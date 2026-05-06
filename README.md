@@ -1,6 +1,8 @@
 # venn diagram
 Draw pretty venn diagram/plot/chart with 2-7 sets and 3 input formats(multiple arrays, boolean matrix, cell arrays with string entries).
-Basic usage
+Basic usage.
+![](gallery/cover.png)
+
 ## Input format 1: Multiple arrays
 ```matlab
 A = [1, 2, 3, 4, 5];
