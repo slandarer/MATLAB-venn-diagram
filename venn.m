@@ -104,7 +104,7 @@ classdef venn < handle
         end
 
         function obj = draw(obj)
-            % warning off
+            warning off
             % Axes decoration
             obj.ax.XLim = [-0.5, 0.5];
             obj.ax.YLim = [-0.5, 0.5];
@@ -119,7 +119,7 @@ classdef venn < handle
             for i = 1:obj.classNum
                 tPData = obj.linePnts(obj.classNum).pnts{i};
                 obj.pshapeHdl{i} = polyshape(tPData(:, 1), tPData(:, 2));
-                obj.fillHdl(i) = fill(tPData(:, 1), tPData(:, 2), tcolorList(i, :), ...
+                obj.fillHdl(i) = fill(obj.ax, tPData(:, 1), tPData(:, 2), tcolorList(i, :), ...
                     'FaceAlpha', 0.2, 'LineWidth', 1.5, 'EdgeColor', tcolorList(i, :));
             end
             
@@ -134,7 +134,7 @@ classdef venn < handle
             % Draw labels in a loop
             for i = 1:obj.classNum
                 tPos = obj.labelPos{obj.classNum};
-                obj.labelHdl(i) = text(tPos(i, 1), tPos(i, 2), obj.labelSet{i}, ...
+                obj.labelHdl(i) = text(obj.ax, tPos(i, 1), tPos(i, 2), obj.labelSet{i}, ...
                     'HorizontalAlignment', 'center', 'FontName', 'Arial', 'FontSize', 16);
             end
             
@@ -153,9 +153,10 @@ classdef venn < handle
                     end                 
                 end
                 [cx, cy] = centroid(tShpae);
-                obj.textHdl(i) = text(cx, cy, num2str(length(tData)), ...
+                obj.textHdl(i) = text(obj.ax, cx, cy, num2str(length(tData)), ...
                     'HorizontalAlignment', 'center', 'FontName', 'Arial');
-            end  
+            end 
+            warning on
         end
         % =================================================================
         % Set label text content
